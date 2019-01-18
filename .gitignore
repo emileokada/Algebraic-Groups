@@ -6,7 +6,6 @@
 *.fls
 *.log
 *.out
-*.pdf
 *.xml
 *.gz
 *.toc
