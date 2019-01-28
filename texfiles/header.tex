@@ -46,8 +46,9 @@
 
 %% Cross references
 \usepackage{varioref}
-%\usepackage[nameinlink, capitalize, noabbrev]{cleveref}
+
 \usepackage[pdftex,hidelinks]{hyperref}
+\usepackage[nameinlink, capitalize, noabbrev]{cleveref}
 
 \pageaiv
 \stockaiv
@@ -114,27 +115,27 @@
 \trimLmarks
 
 %% Environments
-\declaretheorem[style = plain, numberwithin = section]{thm}
-\declaretheorem[style = plain,      sibling = thm]{corollary}
-\declaretheorem[style = plain,      sibling = thm]{lemma}
-\declaretheorem[style = plain,      sibling = thm]{proposition}
-\declaretheorem[style = plain,      sibling = thm]{observation}
-\declaretheorem[style = plain,      sibling = thm]{conjecture}
-\declaretheorem[style = definition, sibling = thm]{definition}
-\declaretheorem[style = definition, sibling = thm]{example}
-\declaretheorem[style = definition, sibling = thm]{notation}
-\declaretheorem[style = remark,     sibling = thm]{remark}
-%\crefname{observation}{Observation}{Observations}
-%\Crefname{observation}{Observation}{Observations}
-%\crefname{conjecture}{Conjecture}{Conjectures}
-%\Crefname{conjecture}{Conjecture}{Conjectures}
-%\crefname{notation}{Notation}{Notations}
-%\Crefname{notation}{Notation}{Notations}
-%\crefname{diagram}{Diagram}{Diagrams}
-%\Crefname{diagram}{Diagram}{Diagrams}
+\declaretheorem[style = plain, numberwithin = section]{theorem}
+\declaretheorem[style = plain,      sibling = theorem]{corollary}
+\declaretheorem[style = plain,      sibling = theorem]{lemma}
+\declaretheorem[style = plain,      sibling = theorem]{proposition}
+\declaretheorem[style = plain,      sibling = theorem]{observation}
+\declaretheorem[style = plain,      sibling = theorem]{conjecture}
+\declaretheorem[style = definition, sibling = theorem]{definition}
+\declaretheorem[style = definition, sibling = theorem]{example}
+\declaretheorem[style = definition, sibling = theorem]{notation}
+\declaretheorem[style = remark,     sibling = theorem]{remark}
+\crefname{observation}{Observation}{Observations}
+\Crefname{observation}{Observation}{Observations}
+\crefname{conjecture}{Conjecture}{Conjectures}
+\Crefname{conjecture}{Conjecture}{Conjectures}
+\crefname{notation}{Notation}{Notations}
+\Crefname{notation}{Notation}{Notations}
+\crefname{diagram}{Diagram}{Diagrams}
+\Crefname{diagram}{Diagram}{Diagrams}
 
 %% Operators
-\DeclareMathOperator{\spn}{span}				% Span of vectors
+\DeclareMathOperator{\Spn}{Span}				% Span of vectors
 \DeclareMathOperator{\Gal}{Gal}					% Galois group
 \DeclareMathOperator{\Spec}{Spec}				% Spectrum
 \DeclareMathOperator{\Proj}{Proj}				% Proj construction
@@ -257,6 +258,9 @@
 \newcommand{\littletilde}{\tilde}							% for the next
 \renewcommand{\tilde}{\widetilde}
 \newcommand{\Spe}{\text{Sp\'e}}						        % Etale space
+\newcommand{\Gm}{{\mathbb{G}_m}}							% Multiplicative group
+\newcommand{\Ga}{\mathbb{G}_a}								% Additive group
+\newcommand{\actson}{\curvearrowright}						% Group acting on
 
 %%\newcommand{\dual}{{}^{\smash{\scalebox{.7}[1.4]{\rotatebox{90}{\guilsinglleft}}}}}	% Dual of sheaf/vector space et cetera
 
