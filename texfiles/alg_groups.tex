@@ -185,7 +185,7 @@ Let $ M $ be an abelian group, $ k $ a ring, and $ k[M] $ the group algebra. We 
 \begin{definition}\label{def:diag_gp_sch}
 	A group scheme constructed in this way is called a \emph{diagonalisable group scheme}.
 \end{definition}
-The name is not immediately a good one, but we will later see that most affine group schemes can be embedded into $ \mathbf{GL}_n $ for some $ n $ \todo{ref!}, and that the diagonalisable group schemes will be precisely those corresponding to groups of diagonalisable matrices. 
+The name is not immediately a good one, but we will later see that most affine group schemes can be embedded into $ \mathbf{GL}_n $ for some $ n $ (\cref{thm:everything_in_GL}), and that the diagonalisable group schemes will be precisely those corresponding to groups of diagonalisable matrices. 
 
 We can describe these schemes completely:
 \begin{theorem}\label{thm:struct_of_diag_gps}
@@ -227,9 +227,9 @@ Let $ \Gamma $ be a finite group, and define a functor \[ \ol\Gamma\colon \texts
 Let $ A\coloneqq Mor(\Gamma\to k) $. Let $ e_\sigma $ be the indicator function for $ \sigma\in \Gamma $, so $ \{e_\sigma\} $ is a basis for $ A $. We define a ring structure on $ A $ by $ e_\sigma^2=e_\sigma, e_\sigma e_\tau =0 $ for $ \sigma\ne\tau $, $ \sum e_\sigma =1 $.
 
 Let $ R $ be a $ k $-algebra where the only idempotents are 0 and 1. Then a homomorphism $ \phi\colon A\to R $ is completely determined by which $ \sigma $ is sent to $ 1 $, so $ \Hom(A,R)\isoto \Gamma $ as sets. If we define a comultiplication on $ A $ by $ \Delta(e_\rho)=\sum_{\rho=\sigma\tau}e_\sigma\otimes e_\tau$, this induces the same group structure on $ \Hom(A,R) $ as that of $ \Gamma $.
-If we define $ S(e_\sigma)=e_{\sigma^{-1}} $, $ \epsilon(e_\sigma)=1 $ if $ \sigma $ is the unit of $ \Gamma $, otherwise $ 0 $, $ A $ becomes a Hopf algebra. We say that it represents the \emph{constant group scheme} $ \Gamma $.
+If we define $ S(e_\sigma)=e_{\sigma^{-1}} $, and $ \epsilon(e_\sigma)=1 $ if $ \sigma $ is the unit of $ \Gamma $, otherwise $ 0 $, $ A $ becomes a Hopf algebra. We say that it represents the \emph{constant group scheme} $ \Gamma $.
 \subsection{Scheme-theoretic aside}
-As a scheme, the construction is simpler: Just take $ \Spec(\prod_{g\in \Gamma})=\coprod_{g\in\Gamma}\Spec k $, and define the group structure by $G\times G\ni (\Spec k)_{g,h} \mapsto (\Spec k)_{gh} \in G$. Chasing through the definitions and various categorical equivalences shows that this really is the same construction.
+As a scheme, the construction is simpler: Just take $ \Spec(\prod_{g\in \Gamma} k)=\coprod_{g\in\Gamma}\Spec k $, and define the group structure by $G\times G\ni (\Spec k)_{g,h} \mapsto (\Spec k)_{gh} \in G$. Chasing through the definitions and various categorical equivalences shows that this really is the same construction.
 \section{Cartier Duality}\label{sec:Cartier_duality}
 Let $ k $ be a ring, $ N $ a finite rank free $ k $-module. Recall that then: $ N\dual $ is also free; if $ M $ is also finite rank free, $(M\otimes N)\dual\isoto M\dual\otimes N\dual  $; $ \Hom_k(M\dual, N\dual)\isoto \Hom_k(M,N)\dual $; and $ \Hom, \otimes $ commute with finite direct sums.
 Hence the same identities hold for finitely generated projective modules, as they are summands of free modules.
