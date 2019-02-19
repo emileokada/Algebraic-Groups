@@ -3,7 +3,7 @@
 \input{header}
 \title{Algebraic groups}
 
-\author{Emile T. Okada,\\ S\o ren Gammelgaard}
+\author{Emile T. Okada,\\ S\o ren Gammelgaard,\\ Esteban Gomezllata Marmolejo}
 
 \begin{document}
 \maketitle
@@ -376,4 +376,408 @@ We conclude with today's final theorem:
  defined by $ x_{ij}\mapsto a_{ij} $.
  But $ v_j =(\epsilon\otimes\id)\Delta(v_j)=\sum\epsilon(v_i)a_{ij} $, so the image contains $ V $, thus all the algebra generators, so the image is all of $ A $. Then we have a surjective map from the Hopf algebra of $ \mathbf{GL}_{\dim V} $ onto $ A $, which means that $ G\injto \mathbf{GL}_{\dim V} $ and is closed.
 \end{proof}
+\chapter{Milne's book}
+\section{The Identity Component of an Algebraic Group}
+
+\begin{definition}
+	The \emph{identity/neutral component} $G^\circ$ of $G$ is
+	the connected component of $G$ containing $e$.
+\end{definition}
+
+We aim to show that $G^\circ$ is an algebraic subgroup of $G$.
+For this, we first look at general algebraic schemes.
+
+\begin{definition}
+	And \emph{étale $k$-algebra} is a finite product of finite
+	separable extensions of $k$.
+\end{definition}
+
+A few properties of étale $k$-algebras.
+
+\begin{itemize}
+	\item Finite products of étale $k$-algebras are étale.
+	\item Quotients of an étale $k$-algebra are étale.
+	\item Composition $A_1 \cdots A_n$ of étale $k$-subalgebras
+	$A_1, \ldots, A_n$ of a $k$-algebra $A$ is an étale subalgebra of $A$.
+	(Due to being a quotient of $A_1 \times \cdots \times A_n$)
+\end{itemize}
+
+\begin{definition}
+	An \emph{étale $k$-scheme} $X$ is the spectrum of an étale $k$-algebra.
+	They are characterized by $|X|$ being a finite set of points, and the
+	local rings $\OO_{X,x}$ are finite separable field extensions of $k$.
+\end{definition}
+
+\begin{lemma}
+	Let $A$ be a ring and $f\in A$ be idempotent $f^2 = f$ which is
+	nontrivial (neither 0 nor 1). Then $(1-f)$ is idempotent, and $\Spec(A)$
+	is the disjoint union of two open-closed subsets $D(f)$ and $D(1-f)$.
+\end{lemma}
+
+\begin{proof}
+	First, $(1-f)^2= 1^2 - 2f + f^2 = 1- 2f + f = (1 - f)$, so $(1-f)$ is
+	idempotent. If $f$ is nontrivial, then so is $(1-f)$.
+	
+	Now, note that $f(1-f) = f - f^2 = 0$. Therefore all idempotents in
+	an integral domain are trivial. By considering prime ideals $P$ such
+	that $A/P$ is an integral domain, we deduce that for all prime $P$,
+	exactly one of $\{f, (1-f)\}$ is contained in $P$. Therefore, each
+	point in $\Spec(A)$ is contained in exactly one of $D(f)$ or $D(1-f)$.
+	
+	Both are open, and mutual complements, so both form an open-closed
+	disjoint cover of $\Spec(A)$.
+\end{proof}
+
+\begin{proposition}[1.29]
+	Let $X$ be an algebraic scheme over $k$. Then there exists a largest
+	étale $k$-subalgebra $\pi(X)$ in $\OO(X)$.
+\end{proposition}
+
+\begin{proof}
+	Given an étale subalgebra $A$ of $\OO(X) = \Gamma(X, \OO_X)$, we know
+	$A \otimes_k k^s \cong (k^s)^n$ for some $n \in \N$.
+	
+	In particular, we have idempotents $f_1, \ldots, f_n \in \OO(X_{k^s})$,
+	(given by
+	$(0, \ldots, 1, \ldots, 0)$) which are orthogonal ($f_i f_j = 0$ for
+	$i \ne j$), and which add up to 1.
+	
+	This implies that for $i\ne j$ and for any prime $P$,
+	$f_i f_j = 0 \in P$. Therefore at least one of $f_i$, $f_j$ is in $P$.
+	By considering this for all $i$, $f_i \notin P$ for at most one
+	$1 \le i \le n$. But $\sum f_i = 1 \notin P$, so exactly one of the
+	$f_i$ is not in $P$.
+	
+	Therefore each point in $|X_{k^s}|$ belongs in exactly one of
+	the $D(f_i)$, which form an open-closed partition of $|X_{k^s}|$.
+	
+	In particular, $n = [A:k] = [A \otimes k^s : k]$ is bounded above
+	by the number of connected components of $|X_{k^s}|$.
+	It follows that the composite of all étale subalgebras of $\OO(X)$ is
+	an étale $k$-subalgebra which contains all others.
+	
+	
+\end{proof}
+
+Now, let $\pi_0(X) = \Spec(\pi(X))$. By the adjunction
+$$\Hom_{k\text{-sch}}(X, \Spec(A)) \cong \Hom_{k\text{-alg}}(A, \OO(X))$$
+the inclusion of $\pi(X)$ into
+$\OO(X)$ induces a morphism $X \to \pi_0(X)$. This is universal among
+morphisms of $X$ into an étale $k$-scheme (since $\pi(X)$ is the maximal
+étale $k$-algebra of $\OO(X)$).
+
+\begin{proposition}[1.30]
+	Let $X$ be an algebraic scheme over $k$.
+	
+	For all fields $k' \supset k$,
+	$$\pi_0(X_{k'}) \simeq \pi_0(X)_{k'}$$
+	
+	If $Y$ is a second algebraic scheme over $k$, then
+	$$\pi_0(X \times Y) \simeq \pi_0(X) \times \pi_0(Y)$$
+\end{proposition}
+
+\begin{proof}
+	Let $\pi = \pi(X)$ and $\pi' = \pi(X_{k'})$. Then $\pi \otimes k'$
+	is an étale subalgebra of $\OO(X_{k'})$, and so by definition
+	$\pi \otimes k' \subset \pi'$. The first part of the proposition
+	requires us to prove we have equality.
+	
+	First suppose $k' = k^s$. Let $\Gamma$ be the Galois group of $k'$ over
+	$k$. Then $\pi'$ is stable under $\Gamma$. From Galois Theory (A.62),
+	we have $\pi'^\Gamma$ is étale over $k$ and
+	$\pi'^\Gamma \otimes k' \simeq \pi'$. We also have that
+	$\pi \subset \pi'^\Gamma$ and so by maximality $\pi = \pi'^\Gamma$.
+	Thus $\pi \otimes k' = \pi'$.
+	
+	Secondly, consider $k = k^s$ and $k' = k^a$, of characteristic $p \ne 0$
+	(Otherwise $k^s=k^a$). Let $e_1, \ldots, e_m$ be a basis of idempotents
+	of $\pi'\cong (k')^m$ as a $k'$-vector space. Write
+	$e_j = \sum a_i \otimes c_i$ for $a_i \in \OO(X)$ and $c_i \in k'$
+	(since $\OO(X_{k'}) \simeq \OO(X)\otimes_k k'$). For some $r$, all
+	$c_i^{p^r}$ lie in $k$, so $e_j = e_j^{p^r} =
+	\sum a^{p^r} \otimes c_i^{p^r}$ (since $e_j$ is idempotent, and the
+	characteristic is $p \ne 0$). This lies in $\OO(X)$ so $\OO(X)$ contains
+	idempotent generators of $\pi'$, so $\pi \otimes k' = \pi'$.
+	
+	Thirdly, consider $k$ and $k'$ algebraically closed. Then
+	$\pi\simeq k^n$ and $\pi'\simeq k'^m$; we aim to show $n=m$.
+	If $m = 1$, then $\pi \otimes k' \subset \pi' = k'$, so $n=1$.
+	If $n=1$, then $X$ is connected and so $X_{k'}$ is connected since
+	$|X|$ is dense in $|X_{k'}|$. Thus $X$ is connected if and only if
+	$X_{k'}$. Thus $n=1$ iff $m=1$. Somehow this extends?
+	
+	In the general case, if $\pi \otimes k' \ne \pi'$, then
+	$\pi \otimes_k k' \otimes_{k'} k'^a = (\pi \otimes_k k^a)
+	\otimes_{k^a} k'^a \ne \pi' \otimes k'^a$, which is a contradiction
+	with the previous statements.
+	
+	For the other part of the proposition, we can suppose that $k = k^a$,
+	and then $X \times Y$ is the union of connected subvarieties
+	${x}\times Y \cup X \times {y}$ with $x \in |X|$ and $y\in |Y|$.
+	
+\end{proof}
+
+
+
+\begin{proposition}[1.31]
+	Let $X$ be an algebraic scheme over $k$.
+	
+	The fibres of the map $\phi: X \to \pi_0(X)$ are the connected
+	components of $X$.
+	
+	For all $x \in |\pi_0(X)|$, $\phi^{-1}(x)$ is a geometrically
+	connected scheme over $\kappa(x)$.
+\end{proposition}
+
+\begin{proof}
+	First, if $x \in |\pi_0(X)|$, and $X_x = \phi^{-1}(x)$, then
+	$\pi(X_x) = \kappa(x)$, which is a finite field extension of $k$.
+	
+	Now, if $\pi(X)$ is a field, then $\OO(X)$ has no non-trivial idempotents
+	(as a non-trivial idempotent would give us a larger étale $k$-algebra).
+	This means that $X$ is connected, as otherwise $\OO(X)$ would have a
+	nontrivial idempotent.
+	
+	Finally, if $\pi(X)=k'$ for a finite extension $k'\supset k$, then
+	$\pi(X_{k^a}) = k' \otimes_k k^a = k^a$, so $X$ is geometrically
+	connected. (Not sure of this argument, we might actually have
+	$\pi(X) = k$, not $k'$)
+\end{proof}
+
+\begin{corollary}[1.32]
+	Let $X$ be a connected algebraic scheme over $k$, such that
+	$X(k)\ne \varnothing$. Then $X$ is geometrically connected ($X_{k^a}$ is
+	connected), and
+	$X \times Y$ is connected for any connected algebraic scheme $Y$ over $k$.
+\end{corollary}
+
+\begin{proof}
+	Let $A=\pi(X)$. By definition, $A$ is a finite product of finite
+	separable extensions of $k$. If the product contains more than one term,
+	then $X$ is not connected, so $A$ is a finite separable field extension
+	of $k$. If $X(k)\cong \Hom(\OO(X),k)$ is non-empty, then there is
+	a $k$-morphism $A \to k$ (inclusion followed by map). Therefore $A=k$,
+	so $\pi(X_{k^a}) = k^a$ and so $X_{k^a}$ is connected, so $X$ is
+	geometrically connected.
+	
+	Moreover $\pi_0(X\times Y) = \pi_0(X)\times \pi_0(Y)$, by considering
+	the maximal étale $k$-algebra in
+	$\OO(X\times Y) \simeq \OO(X)\otimes_k \OO(Y)$. Since $\pi(X)=k$,
+	then $\pi_0(X)\times \pi_0(Y) = \pi_0(Y)$, so $X\times Y$ is connected.
+\end{proof}
+
+\begin{proposition}[1.34]
+	Let $G$ be an algebraic group. The identity component of $G$ is
+	an algebraic subgroup of $G$. Its formation commutes with extension
+	of the base field $(G^\circ)_{k'} \simeq (G_{k'})^\circ$. In particular,
+	the algebraic group $G^\circ$ is geometrically connected.
+	
+\end{proposition}
+
+\begin{proof}
+	The identity component $G^\circ$ of $G$ contains a $k$-point; $e$.
+	Therefore it is both geometrically connected and $G^\circ\times G^\circ$
+	is a connected component of $G \times G$ (1.32). As the
+	multiplication maps $(e,e)\mapsto e$, then it maps $G^\circ\times G^\circ$
+	to $G^\circ$. Similarly, the inversion maps $G^\circ \to G^\circ$, so
+	$G^\circ$ is an algebraic subgroup of $G$.
+	
+	Since the formation of $G \to G^\circ$ commutes with the extension of
+	the base field (1.30), then so does its fibre over $e$ (By composition of
+	fibre squares). In particular,
+	$(G^\circ)_{k'} = (G_{k'})^\circ$, and taking $k' = k^a$ we deduce that
+	$G^\circ$ is geometrically connected.
+\end{proof}
+
+\begin{corollary}[1.35]
+	Every connected component of an algebraic group is irreducible.
+\end{corollary}
+
+\begin{proof}
+	Suppose for contradiction that a connected component is reducible.
+	Then there must exist a point lying in at least two irreducible components
+	(otherwise they'd be in different connected components).
+	Thus there exists such a point in $G_{k^a}$.
+	
+	Now, in $G_{k^a}$, no
+	irreducible component is contained in the union of the remainder
+	(by definition), so there exists a point in $G_{k^a}$ which is
+	contained in exactly one irreducible component.
+	
+	By homogeneity, all points in $G_{k^a}$ are contained in a single
+	irreducible component, which contradicts the statement before.
+\end{proof}
+
+\begin{remark}
+	This means that for algebraic groups, being irreducible, connected
+	or geometrically connected are equivalent. This is not the case
+	for schemes in general.
+	
+	If $G$ is affine, then the above are equivalent to the quotient
+	of $\OO(G)$ by its nilradical being an integral domain.
+\end{remark}
+
+\section{The Dimension of an Algebraic Group}
+
+\begin{definition}
+	The \emph{dimension} of an algebraic group $G$ is the common dimension
+	of its connected components, equal to the common Krull dimension of each
+	local rings $\OO_{G,x}$ for $x \in |G|$.
+\end{definition}
+
+\begin{proof}[This is well-defined]
+	The dimension $\dim(X)$ of an irreducible algebraic scheme $X$ is the
+	common Krull dimension of the local rings $\OO_{X,x}$, for $x$ in $|X|$.
+	Over $k^a$, such irreducible scheme $X$ becomes a finite union of
+	irreducible algebraic schemes, all of the same dimension $\dim(X)$.
+	
+	For $G$, its irreducible components are its connected components
+	(1.35). By homogeneity over $G_{k^a}$, we deduce each
+	irreducible component of $G_{k^a}$ has the same dimension,
+	and thus that each irreducible component of
+	$G$ has the same dimension (by our previous statement).
+\end{proof}
+
+\begin{proposition}[1.37]
+	For an algebraic group $G$,
+	$$\dim \mathrm{Tgt}_e(G) \ge \dim G$$
+	with equality if and only if $G$ is smooth.
+\end{proposition}
+
+\begin{proof}
+	In general, for an algebraic $k$-scheme $G$ with a point $e$ such that
+	$\kappa(e)=k$, $\dim\mathrm{Tgt}_e (G) \ge \dim G$, with equality if and only
+	if $e$ is smooth on $G$ (A.52).
+	
+	If this is the case, then $G$ is smooth (1.28).
+\end{proof}
+
+\section{Algebraic Subgroups}
+
+We aim to know when is $G_{\text{red}}$ an algebraic subgroup.
+
+\begin{definition}
+	A $k$-algebra $A$ is \emph{affine} if $k^a\otimes A$ is reduced
+	(no non-zero nilpotent elements). If $B$ is a reduce $k$-algebra
+	then $A \otimes B$ is reduced. If $k$ is perfect
+	(every algebraic extension is separable), every reduced
+	$k$-algebra is affine.
+\end{definition}
+
+\begin{definition}
+	An algebraic scheme $X$ is \emph{geometrically reduced} if $X_{k^a}$
+	is reduced. If $X$ is geometrically reduced and $Y$is reduced, then
+	$X\times Y$ is reduced. If $k$ is perfect, all reduced schemes are
+	geometrically reduced.
+\end{definition}
+
+\begin{proposition}[1.38-1.39]
+	Let (G,m) be an algebraic group. If $G_{\text{red}}$ is geometrically
+	reduced, then it is an algebraic subgroup. Alternatively, if $k$ is
+	perfect, then $G_{\text{red}}$ is always an algebraic subgroup.
+\end{proposition}
+
+\begin{proof}
+	Recall that if $\phi: Y \to X$ is a morphism of schemes, where $Y$
+	is reduced and $Z$ is a closed subscheme of $X$, then $\phi$ factors
+	through $Z_{\text{red}}$ if and only if $|\phi|$ factors through $|Z|$.
+	(A.30)
+	
+	If $G_{\text{red}}$ is geometrically reduced, then
+	$G_{\text{red}}\times G_{\text{red}}$ is reduced (by the above), so
+	the multiplication restricted to  $G_{\text{red}}\times G_{\text{red}}$
+	factors through $G_{\text{red}}$. Similarly the unit and inversion
+	restricted to $G_{\text{red}}$ factor through $G_{\text{red}}$.
+	
+	It follows that $(G_{\text{red}}, m_{\text{red}})$ is an algebraic
+	subgroup of $(G,m)$.
+	
+	If $k$ is perfect, $G_{\text{red}}$ is geometrically reduced.
+\end{proof}
+
+Note that, in general, $G_{\text{red}}$ is not an algebraic subgroup.
+If it is, even if $k$ is perfect, it need not be a normal algebraic
+subgroup.
+
+An example would be $k=\mathbb{F}_p(t)$, and an algebraic subgroup of
+$\mathbb{G}_a$ given by $X^{p^2}-tX^p = 0$. Then its $G_{\text{red}}$ would
+be given by $X(X^{p(p-1)}-t)$, which is not geometrically reduced since
+it is $X(X^{p-1}-t^{1/p})^p$ in $k^a$.
+
+\begin{lemma}[1.40]
+	Let $G$ be an algebraic group, and $S$ an abstract subgroup of $G(k)$.
+	Then its Zariski closure $\bar S$ is an abstract subgroup of $G(k)$.
+\end{lemma}
+\begin{proof}
+	Take $a,b\in \bar S$, we wish to show $ab\in S$. Take a neighborhood
+	$U$ of $ab$. Since multiplication is a homeomorphism, we can take
+	neighborhoods $A$ and $B$ of $a$ and $b$ such that $AB\subset U$. Then
+	both $A$ and $B$ meet $S$ (since $a$, $b$ are in the closure of $S$),
+	so $U$ must meet $S$. Since this happens for all neighborhoods of $ab$,
+	$ab$ must lie in the Zariski closure of $S$.
+	
+	Since inversion is a homeomorphism, then for $a \in \bar S$, the
+	inverse must lie in the closure of $S^{-1}=S$.
+\end{proof}
+
+\begin{proposition}[1.41]
+	Algebraic subgroups of algebraic groups are closed
+	(in the Zariski topology).
+\end{proposition}
+
+\begin{proof}
+	By noting that the map $|G_{k^a}|\to |G|$ is a quotient map (surjective,
+	continuous and closed), we note that $|H|$ is closed in $|G|$ if and
+	only if $|H_{k^a}|$ is closed in $|G_{k^a}|$. Thus we may consider
+	$k$ to be algebraically closed.
+	
+	Now, since the underlying topological spaces are preserved, we might
+	consider both $G$ and $H$ to be reduced.
+	
+	Now, by definition of closure $|H|$ is open in
+	$\overline{|H|}$. By lemma (1.40), $\overline{|H|}$ is also an
+	abstract subgroup, so $\overline{|H|}$ is a disjoint union of cosets
+	of $|H|$. Therefore $|H|$ is closed in $\overline{|H|}$, so by definition
+	of closure we deduce $|H|=\overline{|H|}$, i.e. $|H|$ is closed in $|G|$.
+\end{proof}
+
+\begin{corollary}[1.42]
+	The algebraic subgroups of an algebraic group satisfy the descending
+	chain condition.
+\end{corollary}
+\begin{proof}
+	This is true for closed subschemes of an algebraic scheme.
+\end{proof}
+
+\begin{corollary}[1.43]
+	Algebraic subgroups of an affine algebraic group are affine.
+\end{corollary}
+\begin{proof}
+	This is true for closed subschemes of an algebraic scheme.
+\end{proof}
+
+\begin{corollary}
+	Say $H_1$, $H_2$ are algebraic subvarieties (separated, geometrically
+	reduced) of an algebraic group. If $H_1(k^s)=H_2(k^s)$, then $H_1=H_2$.
+\end{corollary}
+
+\begin{proof}
+	Since $H_1$ and $H_2$ are closed, we can apply (1.18):
+	We say
+	$X(k')$ is \emph{dense} in $X$ if the only closed subscheme such that
+	$Z(k')=X(k')$ is $X$ itself. If $X$ is geometrically reduced and
+	$|X(k')|$ is dense in $|X|$, then $X(k')$ is dense in $X$. This is
+	because any $Z(k') = X(k')$ would have $|Z_{k'}|=|X_{k'}|$, which,
+	since $X_{k'}$ is reduced by $X$ geometrically reduced, implies
+	$Z_{k'}=X_{k'}$, ie $Z = X$.
+	
+	By considering $H_1\cap H_2 \subset H_1$ and $H_1\cap H_2 \subset H_2$,
+	we deduce that since $H_1(k^s)=H_2(k^s)$ implies
+	$(H_1\cap H_2)(k^s)=H_1(k^s)$, then
+	$$H_1 = H_1 \cap H_2 = H_2$$
+\end{proof}
+
+\section{Normal and Characteristic Subgroups}
+
+\section{Descent of Subgroups}
 \end{document}
